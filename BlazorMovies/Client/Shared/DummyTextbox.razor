@@ -1,0 +1,8 @@
+﻿
+<input type="text" @attributes="AdditionalParameters" />
+
+@code {
+    // todo: CaptureUnmatchedValues ?
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object> AdditionalParameters { get; set; }
+}

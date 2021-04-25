@@ -1,0 +1,36 @@
+﻿@page "/movies/edit/{MovieId:int}"
+@inject IMoviesRepository moviesRepository  
+@inject NavigationManager navigationManager
+
+<h3>Edit Movie</h3>
+
+@if (Movie != null)
+{
+    <MovieForm Movie="Movie" OnValidSubmit="Edit" NotSelectedGenres="NoSelectedGenres"
+               SelectedGenres="SelectedGenres" 
+               SelectedActors="SelectedActors"
+               />
+}
+
+@code {
+    [Parameter] public int MovieId { get; set; }
+    private Movie Movie;
+    private List<Genre> NoSelectedGenres;
+    private List<Genre> SelectedGenres;
+    private List<Person> SelectedActors;
+
+    protected async override Task OnInitializedAsync()
+    {
+        var model = await moviesRepository.GetMovieForUpdate(MovieId);
+        Movie = model.Movie;
+        SelectedActors = model.Actors;
+        SelectedGenres = model.SelectedGenres;
+        NoSelectedGenres = model.NotSelectedGenres;
+    }
+
+    private async Task Edit()
+    {
+        await moviesRepository.UpdateMovie(Movie);
+        navigationManager.NavigateTo($"movie/{MovieId}/{Movie.Title.Replace(" ", "-")}");
+    }
+}
