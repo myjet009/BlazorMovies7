@@ -1,5 +1,6 @@
 ﻿@page "/people"
 @inject IPersonRepository personRepository
+@attribute [Authorize]
 
 
 <h3>IndexPeople</h3>
@@ -38,7 +39,7 @@
 
 @code {
     List<Person> People;
-    PaginationDTO paginationDTO = new PaginationDTO() {RecordsPerPage = 1 };
+    PaginationDTO paginationDTO = new PaginationDTO() { RecordsPerPage = 1 };
     private int totalAmountPages;
 
 

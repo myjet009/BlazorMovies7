@@ -3,6 +3,15 @@
 @page "/index/1"
 @inject IMoviesRepository moviesRepository
 
+<AuthorizeView>
+    <Authorized>
+        You are authorized, @context.User.Identity.Name
+    </Authorized>
+    <NotAuthorized>
+        Not authorized
+    </NotAuthorized>
+</AuthorizeView>
+
 <div>
     <h3>In theaters</h3>
     <MoviesList Movies="InTheaters" />
