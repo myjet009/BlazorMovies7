@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorMovies.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210425054241_IdentityTables")]
-    partial class IdentityTables
+    [Migration("20210426142322_AddAdmin")]
+    partial class AddAdmin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,6 +67,32 @@ namespace BlazorMovies.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("BlazorMovies.Shared.Entities.MovieRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RatingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieRatings");
                 });
 
             modelBuilder.Entity("BlazorMovies.Shared.Entities.MoviesActors", b =>
@@ -325,6 +351,17 @@ namespace BlazorMovies.Server.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BlazorMovies.Shared.Entities.MovieRating", b =>
+                {
+                    b.HasOne("BlazorMovies.Shared.Entities.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("BlazorMovies.Shared.Entities.MoviesActors", b =>

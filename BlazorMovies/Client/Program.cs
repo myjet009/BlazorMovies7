@@ -32,6 +32,8 @@ namespace BlazorMovies.Client
             services.AddScoped<IMoviesRepository, MoviesRepository>();
             services.AddScoped<IAccountsRepository, AccountsRepository>();
             services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IDisplayMessage, DisplayMessage>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddAuthorizationCore();
             // services.AddScoped<AuthenticationStateProvider, DummyAuthenticationStateProvider>();
             // services.AddScoped<AuthenticationStateProvider, JWTAuthenticationStateProvider>();

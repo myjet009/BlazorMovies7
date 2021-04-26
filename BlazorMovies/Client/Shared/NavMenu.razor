@@ -17,7 +17,7 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Serach Movies
             </NavLink>
         </li>
-        <AuthorizeView>
+        <AuthorizeView Roles="Admin">
             <Authorized>
                 <li class="nav-item px-3">
                     <NavLink class="nav-link" href="genres">
@@ -34,8 +34,15 @@
                         <span class="oi oi-list-rich" aria-hidden="true"></span> Create a Movie
                     </NavLink>
                 </li>
+
             </Authorized>
         </AuthorizeView>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="users">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Users
+            </NavLink>
+        </li>
     </ul>
 </div>
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorMovies.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210425105019_Voting")]
+    [Migration("20210426142021_Voting")]
     partial class Voting
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
